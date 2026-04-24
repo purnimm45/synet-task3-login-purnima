@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — InternPortal</title>
+</head>
+
+<body>
+
+  <div class="bg-canvas">
+    <div class="bg-shape-br"></div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span class="toast-dot"></span>
+    <span id="toast-message">Done!</span>
+  </div>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+
+      <div class="login-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+            <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+          </svg>
+        </div>
+        <span class="brand-name">InternPortal</span>
+      </div>
+
+      <header class="login-heading">
+        <h1>Good to see<br>you <em>again.</em></h1>
+        <div class="heading-rule"></div>
+        <p>Sign in to continue to your dashboard.</p>
+      </header>
+
+      <form class="login-form" id="login-form" novalidate>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <div class="input-field-wrap">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="M2 7l10 7 10-7"></path>
+              </svg>
+            </span>
+            <input type="email" id="email" name="email"
+                   placeholder="you@example.com" autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <div class="input-field-wrap">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input type="password" id="password" name="password"
+                   placeholder="Enter your password" autocomplete="current-password" required />
+            <button type="button" class="toggle-password" id="toggle-pw">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round" width="15" height="15" id="eye-icon">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-meta">
+          <a href="#" class="forgot-link" id="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">
+          <span class="btn-label">Sign in</span>
+          <span class="spinner"></span>
+        </button>
+
+      </form>
+
+      <div class="divider">or</div>
+
+      <footer class="login-footer">
+        No account yet? <a href="#">Apply here</a>
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>
