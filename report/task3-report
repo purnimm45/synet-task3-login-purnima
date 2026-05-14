@@ -1,0 +1,155 @@
+# Task 3 Report — Login Page UI
+**Internship Assessment | Synent Technologies**  
+**Submitted by:** Purnima  
+**Task Level:** Beginner  
+**Date:** May 2026
+
+---
+
+## 1. Objective
+
+The goal of this task was to design and build a clean, functional Login Page UI using only semantic HTML5 and custom CSS. No external frameworks like Bootstrap or Tailwind were allowed.
+
+---
+
+## 2. Requirements Checklist
+
+| Requirement | Status |
+|---|---|
+| Email input field | ✅ Done |
+| Password input field | ✅ Done |
+| Login button | ✅ Done |
+| "Forgot Password?" text/link | ✅ Done |
+| Modern and properly aligned UI | ✅ Done |
+| Responsive design | ✅ Done |
+| Functional JavaScript | ✅ Done |
+
+---
+
+## 3. What I Built
+
+A fully functional login page with a centered card layout. Beyond the basic requirements, I added several extra features to make the page feel like a real product:
+
+- **Email validation** — checks for empty field and proper format (`user@domain.com`) using regex
+- **Strong password validation** — enforces 5 rules: minimum 8 characters, one uppercase letter, one lowercase letter, one number, and one symbol
+- **Live password strength bar** — updates in real time as the user types, showing Weak / Medium / Strong with colour feedback
+- **Show/hide password toggle** — eye icon button switches between `type="password"` and `type="text"`
+- **Forgot Password modal** — clicking the link opens an overlay modal with its own email input and validation, simulates sending a reset link
+- **Apply Here modal** — clicking "Apply here" opens a full internship application form with first name, last name, email, role, and a message field, all with validation
+- **Toast notifications** — a small notification slides in from the top of the screen for success and error feedback
+- **Responsive layout** — tested at 1280px, 480px, and 360px widths
+
+---
+
+## 4. Tech Stack
+
+| Technology | Usage |
+|---|---|
+| HTML5 | Page structure, semantic elements (`<main>`, `<header>`, `<form>`, `<footer>`) |
+| CSS3 | Layout (Flexbox, Grid), custom properties, transitions, keyframe animations |
+| Vanilla JavaScript | Form validation, modal logic, DOM manipulation, event handling |
+| Google Fonts | Fraunces (heading), DM Sans (body/form) |
+
+No external libraries or frameworks were used.
+
+---
+
+## 5. File Structure
+
+```
+task3-login-page/
+├── login.html            — HTML structure + JavaScript
+├── style.css             — All CSS styles
+├── README.md             — Project overview
+├── report/
+│   └── task3-report.md   — This file
+└── screenshots/
+    ├── 01-login-page-desktop.png
+    ├── 02-validation-errors.png
+    ├── 03-password-strength.png
+    ├── 04-forgot-password-modal.png
+    ├── 05-apply-form-modal.png
+    └── 06-mobile-view.png
+```
+
+---
+
+## 6. Design Decisions
+
+**Color Palette**  
+I chose a warm off-white (`#f5f0e8`) background with terracotta (`#c4623a`) as the primary accent and sage green (`#5a7a5e`) for links. This combination feels warmer and more personal compared to the typical dark navy and blue palette most login pages use.
+
+**Typography**  
+Fraunces is a variable serif font with a distinctive italic style — used only for the heading to give it character. DM Sans is a clean geometric sans-serif used for all form elements and body text to keep things readable.
+
+**Card Style**  
+The card uses a `5px 5px 0px` offset shadow in parchment color rather than a centered drop shadow. This gives it a slightly editorial, printed feel rather than the floating glassmorphism style that's everywhere right now.
+
+**Modals**  
+Both modals (forgot password and apply form) follow the same visual language as the login card — same border radius, same shadow, same background. The overlay dims the page with a semi-transparent ink color. They can be dismissed by clicking outside or the X button.
+
+**Validation Approach**  
+Errors appear inline, directly under the field that failed, with a red border highlight. This is more user-friendly than a single alert at the top because it points exactly to what needs fixing.
+
+---
+
+## 7. JavaScript Logic Summary
+
+```
+Login form submit
+  └── clear previous errors
+  └── validate email (empty check → format check)
+  └── validate password (empty → length → uppercase → lowercase → number → symbol)
+  └── if errors → show inline messages, stop
+  └── if valid → show loading spinner → simulate login → show toast → reset form
+
+Password input (live)
+  └── count how many of 5 rules pass
+  └── update strength bar width and color
+  └── update label text (Weak / Medium / Strong)
+
+Forgot password modal
+  └── open on link click
+  └── close on X or outside click
+  └── validate email on submit → show toast → close modal
+
+Apply form modal
+  └── open on "Apply here" click
+  └── close on X or outside click
+  └── validate all 5 fields on submit
+  └── message must be at least 20 characters
+  └── show success toast → close modal → reset form
+```
+
+---
+
+## 8. Challenges and How I Solved Them
+
+**Challenge 1 — Password validation feedback**  
+I wanted to show specific messages for each rule rather than one generic "invalid password" message. I solved this by checking each rule in order and breaking out of the chain as soon as one fails, so the user gets one clear instruction at a time.
+
+**Challenge 2 — Modal accessibility**  
+Clicking outside the modal to close it required checking if the click target was the overlay itself (`e.target === modal`) rather than any child element inside it. This was a small but important UX detail.
+
+**Challenge 3 — HTML attribute bug**  
+During development the email and password inputs were rendering on the same row. This turned out to be a missing closing quote on the `autocomplete` attribute — `autocomplete="email required/>` instead of `autocomplete="email" required />`. A single typo was breaking the entire form layout, which was a good reminder to always validate HTML structure.
+
+---
+
+## 9. How to Run
+
+1. Download `login.html` and `style.css`
+2. Keep both files in the same folder
+3. Open `login.html` in any browser
+4. No server, no install, no dependencies needed
+
+---
+
+## 10. Possible Improvements
+
+- Connect to a real backend using `fetch()` for actual authentication
+- Add a "Remember me" checkbox
+- Add Google / GitHub OAuth buttons
+- Store application form submissions in a database
+- Add proper ARIA labels for screen reader accessibility
+- Add unit tests for the validation functions
