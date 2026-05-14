@@ -5,27 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login — InternPortal</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel = "stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
+  <!-- background blobs -->
   <div class="bg-canvas" aria-hidden="true">
     <div class="bg-shape-br"></div>
   </div>
 
-
+  <!-- toast popup -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     <span class="toast-dot"></span>
     <span id="toast-message">Done!</span>
   </div>
 
-  <!-- Main layout -->
+  <!-- ===================== FORGOT PASSWORD MODAL ===================== -->
+  <div class="modal-overlay" id="forgot-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="close-forgot">&#10005;</button>
+      <h2 class="modal-title">Reset Password</h2>
+      <p class="modal-sub">Enter your registered email and we'll send you a reset link.</p>
+
+      <form id="forgot-form" novalidate>
+        <div class="input-group" style="margin-top: 20px;">
+          <label for="reset-email">Email Address</label>
+          <div class="input-field-wrap">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 7 10-7"></path></svg>
+            </span>
+            <input type="email" id="reset-email" placeholder="purnima@gmail.com" />
+          </div>
+          <span class="field-error" id="reset-email-err"></span>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top: 18px;">Send Reset Link</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== APPLY FORM MODAL ===================== -->
+  <div class="modal-overlay" id="apply-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="close-apply">&#10005;</button>
+      <h2 class="modal-title">Apply for Internship</h2>
+      <p class="modal-sub">Fill in your details and we'll get back to you.</p>
+
+      <form id="apply-form" novalidate>
+
+        <div class="two-col">
+          <div class="input-group">
+            <label for="apply-fname">First Name</label>
+            <div class="input-field-wrap">
+              <span class="field-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+              </span>
+              <input type="text" id="apply-fname" placeholder="Purnima" />
+            </div>
+            <span class="field-error" id="fname-err"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="apply-lname">Last Name</label>
+            <div class="input-field-wrap">
+              <span class="field-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+              </span>
+              <input type="text" id="apply-lname" placeholder="Tamang" />
+            </div>
+            <span class="field-error" id="lname-err"></span>
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 14px;">
+          <label for="apply-email">Email Address</label>
+          <div class="input-field-wrap">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 7 10-7"></path></svg>
+            </span>
+            <input type="email" id="apply-email" placeholder="purnima@gmail.com" />
+          </div>
+          <span class="field-error" id="apply-email-err"></span>
+        </div>
+
+        <div class="input-group" style="margin-top: 14px;">
+          <label for="apply-role">Role Applying For</label>
+          <div class="input-field-wrap">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg>
+            </span>
+            <input type="text" id="apply-role" placeholder="e.g. Frontend Developer" />
+          </div>
+          <span class="field-error" id="role-err"></span>
+        </div>
+
+        <div class="input-group" style="margin-top: 14px;">
+          <label for="apply-msg">Why do you want to join?</label>
+          <textarea id="apply-msg" class="apply-textarea" placeholder="Tell us a bit about yourself..."></textarea>
+          <span class="field-error" id="msg-err"></span>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top: 20px;">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN LOGIN CARD ===================== -->
   <main class="login-wrapper">
     <div class="login-card">
 
-     
       <div class="login-brand">
         <div class="brand-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
@@ -35,16 +124,15 @@
         <span class="brand-name">InternPortal</span>
       </div>
 
-    
       <header class="login-heading">
         <h1>Good to see<br>you <em>again.</em></h1>
         <div class="heading-rule"></div>
         <p>Sign in to continue to your dashboard.</p>
       </header>
 
-      <!-- Form -->
       <form class="login-form" id="login-form" novalidate>
 
+        <!-- email field -->
         <div class="input-group">
           <label for="email">Email Address</label>
           <div class="input-field-wrap">
@@ -54,10 +142,18 @@
                 <path d="M2 7l10 7 10-7"></path>
               </svg>
             </span>
-            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email required/>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="purnima@gmail.com"
+              autocomplete="email"
+            />
           </div>
+          <span class="field-error" id="email-err"></span>
         </div>
 
+        <!-- password field -->
         <div class="input-group">
           <label for="password">Password</label>
           <div class="input-field-wrap">
@@ -67,13 +163,28 @@
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
             </span>
-            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required/>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Min 8 chars, uppercase, symbol"
+              autocomplete="current-password"
+            />
             <button type="button" class="toggle-password" id="toggle-pw" aria-label="Toggle password visibility">
               <svg viewBox="0 0 24 24" id="eye-icon">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
             </button>
+          </div>
+          <span class="field-error" id="pass-err"></span>
+
+          <!-- password strength bar -->
+          <div class="strength-wrap" id="strength-wrap">
+            <div class="strength-bar">
+              <div class="strength-fill" id="strength-fill"></div>
+            </div>
+            <span class="strength-label" id="strength-label"></span>
           </div>
         </div>
 
@@ -91,28 +202,97 @@
       <div class="divider">or</div>
 
       <footer class="login-footer">
-        No account yet? <a href="#">Apply here</a>
+        No account yet? <a href="#" id="apply-link">Apply here</a>
       </footer>
 
     </div>
   </main>
 
   <script>
+    // ---- grab everything we need ----
+    const loginForm     = document.getElementById('login-form');
+    const submitBtn     = document.getElementById('submit-btn');
+    const emailInput    = document.getElementById('email');
+    const passInput     = document.getElementById('password');
+    const emailErr      = document.getElementById('email-err');
+    const passErr       = document.getElementById('pass-err');
+    const togglePw      = document.getElementById('toggle-pw');
+    const eyeIcon       = document.getElementById('eye-icon');
+    const toast         = document.getElementById('toast');
+    const toastMsg      = document.getElementById('toast-message');
+    const strengthFill  = document.getElementById('strength-fill');
+    const strengthLabel = document.getElementById('strength-label');
+    const strengthWrap  = document.getElementById('strength-wrap');
 
-    const form       = document.getElementById('login-form');
-    const submitBtn  = document.getElementById('submit-btn');
-    const togglePw   = document.getElementById('toggle-pw');
-    const passwordEl = document.getElementById('password');
-    const eyeIcon    = document.getElementById('eye-icon');
-    const toast      = document.getElementById('toast');
-    const toastMsg   = document.getElementById('toast-message');
-    const forgotLink = document.getElementById('forgot-link');
+    // modals
+    const forgotModal = document.getElementById('forgot-modal');
+    const applyModal  = document.getElementById('apply-modal');
+    const forgotLink  = document.getElementById('forgot-link');
+    const applyLink   = document.getElementById('apply-link');
+    const closeForgot = document.getElementById('close-forgot');
+    const closeApply  = document.getElementById('close-apply');
+    const forgotForm  = document.getElementById('forgot-form');
+    const applyForm   = document.getElementById('apply-form');
 
-    // Toggle show/hide password
+    // ---- toast helper ----
+    function showToast(msg, isErr = false) {
+      toastMsg.textContent = msg;
+      toast.classList.toggle('error', isErr);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ---- email format check ----
+    function isValidEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+    }
+
+    // ---- password rules ----
+    function checkPassword(val) {
+      const rules = {
+        length:    val.length >= 8,
+        uppercase: /[A-Z]/.test(val),
+        lowercase: /[a-z]/.test(val),
+        number:    /[0-9]/.test(val),
+        symbol:    /[^A-Za-z0-9]/.test(val)
+      };
+      const passed = Object.values(rules).filter(Boolean).length;
+      return { rules, passed };
+    }
+
+    // ---- live password strength bar ----
+    passInput.addEventListener('input', () => {
+      const val = passInput.value;
+      if (!val) {
+        strengthWrap.style.display = 'none';
+        return;
+      }
+      strengthWrap.style.display = 'flex';
+
+      const { passed } = checkPassword(val);
+      const pct = (passed / 5) * 100;
+      strengthFill.style.width = pct + '%';
+
+      if (passed <= 2) {
+        strengthFill.style.background = '#e07070';
+        strengthLabel.textContent = 'Weak';
+        strengthLabel.style.color = '#e07070';
+      } else if (passed === 3 || passed === 4) {
+        strengthFill.style.background = '#d9a84e';
+        strengthLabel.textContent = 'Medium';
+        strengthLabel.style.color = '#d9a84e';
+      } else {
+        strengthFill.style.background = '#5a7a5e';
+        strengthLabel.textContent = 'Strong';
+        strengthLabel.style.color = '#5a7a5e';
+      }
+    });
+
+    // ---- show/hide password toggle ----
     togglePw.addEventListener('click', () => {
-      const isHidden = passwordEl.type === 'password';
-      passwordEl.type = isHidden ? 'text' : 'password';
-      eyeIcon.innerHTML = isHidden
+      const hidden = passInput.type === 'password';
+      passInput.type = hidden ? 'text' : 'password';
+      eyeIcon.innerHTML = hidden
         ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
            <line x1="1" y1="1" x2="23" y2="23"></line>`
@@ -120,41 +300,139 @@
            <circle cx="12" cy="12" r="3"></circle>`;
     });
 
-    // Show toast notification
-    function showToast(message, isError = false) {
-      toastMsg.textContent = message;
-      toast.classList.toggle('error', isError);
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3500);
-    }
-
-    // Prevent page refresh + simulate login
-    form.addEventListener('submit', (e) => {
+    // ---- main login submit ----
+    loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const email    = document.getElementById('email').value.trim();
-      const password = passwordEl.value;
+      // clear old errors first
+      emailErr.textContent = '';
+      passErr.textContent  = '';
+      emailInput.classList.remove('input-invalid');
+      passInput.classList.remove('input-invalid');
 
-      if (!email || !password) {
-        showToast('Please fill in both fields.', true);
-        return;
+      let hasError = false;
+
+      // check email
+      const emailVal = emailInput.value.trim();
+      if (!emailVal) {
+        emailErr.textContent = 'Email is required.';
+        emailInput.classList.add('input-invalid');
+        hasError = true;
+      } else if (!isValidEmail(emailVal)) {
+        emailErr.textContent = 'Please enter a valid email address.';
+        emailInput.classList.add('input-invalid');
+        hasError = true;
       }
 
+      // check password
+      const passVal = passInput.value;
+      if (!passVal) {
+        passErr.textContent = 'Password is required.';
+        passInput.classList.add('input-invalid');
+        hasError = true;
+      } else {
+        const { rules } = checkPassword(passVal);
+        if (!rules.length)         { passErr.textContent = 'Password must be at least 8 characters.'; hasError = true; }
+        else if (!rules.uppercase) { passErr.textContent = 'Add at least one uppercase letter (A-Z).'; hasError = true; }
+        else if (!rules.lowercase) { passErr.textContent = 'Add at least one lowercase letter (a-z).'; hasError = true; }
+        else if (!rules.number)    { passErr.textContent = 'Add at least one number (0-9).'; hasError = true; }
+        else if (!rules.symbol)    { passErr.textContent = 'Add at least one symbol (!@#$...).'; hasError = true; }
+
+        if (passErr.textContent) passInput.classList.add('input-invalid');
+      }
+
+      if (hasError) return;
+
+      // all good — show loading
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
       setTimeout(() => {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
-        showToast('Signed in! Redirecting you now…', false);
-        form.reset();
+        showToast('Signed in! Redirecting you now…');
+        loginForm.reset();
+        strengthWrap.style.display = 'none';
+        strengthFill.style.width = '0%';
       }, 1800);
     });
 
-    // Forgot password action
+    // ---- forgot password modal ----
     forgotLink.addEventListener('click', (e) => {
       e.preventDefault();
-      showToast('Reset link sent to your email.', false);
+      forgotModal.classList.add('open');
+    });
+
+    closeForgot.addEventListener('click', () => forgotModal.classList.remove('open'));
+
+    forgotModal.addEventListener('click', (e) => {
+      if (e.target === forgotModal) forgotModal.classList.remove('open');
+    });
+
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val   = document.getElementById('reset-email').value.trim();
+      const errEl = document.getElementById('reset-email-err');
+
+      if (!val) {
+        errEl.textContent = 'Please enter your email.';
+        return;
+      }
+      if (!isValidEmail(val)) {
+        errEl.textContent = "That doesn't look like a valid email.";
+        return;
+      }
+
+      errEl.textContent = '';
+      forgotModal.classList.remove('open');
+      showToast('Reset link sent! Check your inbox.');
+      forgotForm.reset();
+    });
+
+    // ---- apply modal ----
+    applyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      applyModal.classList.add('open');
+    });
+
+    closeApply.addEventListener('click', () => applyModal.classList.remove('open'));
+
+    applyModal.addEventListener('click', (e) => {
+      if (e.target === applyModal) applyModal.classList.remove('open');
+    });
+
+    applyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fname = document.getElementById('apply-fname').value.trim();
+      const lname = document.getElementById('apply-lname').value.trim();
+      const email = document.getElementById('apply-email').value.trim();
+      const role  = document.getElementById('apply-role').value.trim();
+      const msg   = document.getElementById('apply-msg').value.trim();
+
+      document.getElementById('fname-err').textContent       = '';
+      document.getElementById('lname-err').textContent       = '';
+      document.getElementById('apply-email-err').textContent = '';
+      document.getElementById('role-err').textContent        = '';
+      document.getElementById('msg-err').textContent         = '';
+
+      let ok = true;
+
+      if (!fname) { document.getElementById('fname-err').textContent = 'First name is required.'; ok = false; }
+      if (!lname) { document.getElementById('lname-err').textContent = 'Last name is required.'; ok = false; }
+      if (!email || !isValidEmail(email)) {
+        document.getElementById('apply-email-err').textContent = 'Enter a valid email.'; ok = false;
+      }
+      if (!role) { document.getElementById('role-err').textContent = 'Please mention the role.'; ok = false; }
+      if (!msg || msg.length < 20) {
+        document.getElementById('msg-err').textContent = 'Write at least a sentence about yourself.'; ok = false;
+      }
+
+      if (!ok) return;
+
+      applyModal.classList.remove('open');
+      showToast("Application submitted! We'll be in touch.");
+      applyForm.reset();
     });
   </script>
 
