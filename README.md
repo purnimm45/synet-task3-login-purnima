@@ -30,7 +30,7 @@ task3-login-page/
 ├── style.css
 ├── README.md
 ├── report/
-│   └── task3-report.md
+│   └── task3-report
 └── screenshots/
     ├── 01-login-page-desktop.png
     ├── 02-validation-errors.png
@@ -96,13 +96,15 @@ The card has a slight offset shadow (`5px 5px 0px`) which gives it a grounded fe
 
 ## Commits
 
-This repo has 5 commits showing how the project was built step by step:
+This repo has commits showing how the project was built step by step:
 
 1. Added base HTML structure and login form layout
 2. Added CSS reset, custom properties, and card styles
 3. Styled input fields, labels, focus states, and responsive breakpoints
 4. Added submit button hover effects and loading spinner
 5. Added JS validation, password strength bar, toast notifications, forgot password modal, and apply form modal
+
+Ofcourse I have many commits as I have edited it many times. 
 
 ---
 
