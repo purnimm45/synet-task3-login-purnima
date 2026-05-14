@@ -22,19 +22,22 @@ The page has:
 
 ---
 
+## Files
+
+```
 task3-login-page/
 ├── login.html
 ├── style.css
 ├── README.md
-├── screenshots/
-│   ├── 01-login-page-desktop.png
-│   ├── 02-validation-errors.png
-│   ├── 03-password-strength.png
-│   ├── 04-forgot-password-modal.png
-│   ├── 05-apply-form-modal.png
-│   └── 06-mobile-view.png
-└── report/
-    └── task3-report
+├── report/
+│   └── task3-report.md
+└── screenshots/
+    ├── 01-login-page-desktop.png
+    ├── 02-validation-errors.png
+    ├── 03-password-strength.png
+    ├── 04-forgot-password-modal.png
+    ├── 05-apply-form-modal.png
+    └── 06-mobile-view.png
 ```
 
 ---
