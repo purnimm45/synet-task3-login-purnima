@@ -145,7 +145,13 @@ During development the email and password inputs were rendering on the same row.
 
 ---
 
-## 10. Possible Improvements
+##10. Video Link
+
+Go through the link to view my implementation of the task assigned where I have clearly explained how I worked on it.
+Video Link : https://youtu.be/ytPFrCZ53aU
+
+
+## 11. Possible Improvements
 
 - Connect to a real backend using `fetch()` for actual authentication
 - Add a "Remember me" checkbox
