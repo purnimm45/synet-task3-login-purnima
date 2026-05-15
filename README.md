@@ -22,6 +22,11 @@ The page has:
 
 ---
 
+## Demo Video
+
+video link to showcase my implementation: https://youtu.be/ytPFrCZ53aU
+
+---
 ## Files
 
 ```
@@ -105,10 +110,6 @@ This repo has commits showing how the project was built step by step:
 5. Added JS validation, password strength bar, toast notifications, forgot password modal, and apply form modal
 
 Ofcourse I have many commits as I have edited it many times. 
-
-## Demo Video
-
-video link to showcase my implementation: https://youtu.be/ytPFrCZ53aU
 
 ---
 
