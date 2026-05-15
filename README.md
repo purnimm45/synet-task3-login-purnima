@@ -106,6 +106,10 @@ This repo has commits showing how the project was built step by step:
 
 Ofcourse I have many commits as I have edited it many times. 
 
+## Demo Video
+
+video link to showcase my implementation: https://youtu.be/ytPFrCZ53aU
+
 ---
 
 ## Notes
